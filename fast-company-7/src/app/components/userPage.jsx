@@ -11,9 +11,8 @@ const UserPage = ({ userId }) => {
     useEffect(() => {
         api.users.getById(userId).then((data) => setUser(data))
     })
-    console.log(userId)
-    const handleClick = () => {
-        history.push(userId)
+    const handleClickPageUsers = () => {
+        history.push('/users')
     }
     // {
     //     /* <h1>UserPage {userId}</h1>
@@ -33,7 +32,7 @@ const UserPage = ({ userId }) => {
                         <h2>Rate: {user.rate}</h2>
                         <button className="btn btn-dark"
                             onClick={() => {
-                                handleClick()
+                                handleClickPageUsers()
                             }}
                         >
                             Все пользователи
