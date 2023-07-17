@@ -11,38 +11,32 @@ const UserPage = ({ userId }) => {
     useEffect(() => {
         api.users.getById(userId).then((data) => setUser(data))
     })
-    const handleClickPageUsers = () => {
+    const handleClick = () => {
         history.push('/users')
     }
-    // {
-    //     /* <h1>UserPage {userId}</h1>
-    //         <h1>{user ? user.name : 'loading'}</h1> */
-    // }
+
+    if (!user) return <span className="m-3">Loading...</span>
     return (
         <>
-            {user
-                ? (
-                    <div className="m-3">
-                        <h1>{user.name}</h1>
-                        <h2>Профессия: {user.profession.name}</h2>
-                        <p>
-                            <QualitiesList qualities={user.qualities} />
-                        </p>
-                        <p>completedMeetings: {user.completedMeetings}</p>
-                        <h2>Rate: {user.rate}</h2>
-                        <button className="btn btn-dark"
-                            onClick={() => {
-                                handleClickPageUsers()
-                            }}
-                        >
-                            Все пользователи
-                        </button>
-                    </div>
-                )
-                : (
-                    <h1 className="m-3">Loading...</h1>
-                )
-            }
+            {user && (
+                <div className="m-3">
+                    <h1>{user.name}</h1>
+                    <h2>Профессия: {user.profession.name}</h2>
+                    <p>
+                        <QualitiesList qualities={user.qualities} />
+                    </p>
+                    <p>completedMeetings: {user.completedMeetings}</p>
+                    <h2>Rate: {user.rate}</h2>
+                    <button
+                        className="btn btn-dark"
+                        onClick={() => {
+                            handleClick()
+                        }}
+                    >
+                        Все пользователи
+                    </button>
+                </div>
+            )}
         </>
     )
 }
